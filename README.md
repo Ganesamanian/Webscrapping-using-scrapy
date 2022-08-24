@@ -187,8 +187,9 @@ The proper way
 <!-- Documentation -->
 # Documentation
 
+A detailed Documentation on scrapy and comaprison with other webcrawler is povided in [Link](https://github.com/Ganesamanian/Webscrapping-using-scrapy/blob/master/Web_content_mining%20survery%20and%20scrapy.pdf)
 
-Documentation is available online at https://docs.scrapy.org/ and in the ``docs``
+Scrapy original Documentation is available online at https://docs.scrapy.org/ and in the ``docs``
 directory.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
