@@ -14,36 +14,6 @@
 
 
 
-
-
-
-# Scrapy
-
-
-.. image:: https://img.shields.io/pypi/v/Scrapy.svg
-   :target: https://pypi.python.org/pypi/Scrapy
-   :alt: PyPI Version
-
-.. image:: https://img.shields.io/pypi/pyversions/Scrapy.svg
-   :target: https://pypi.python.org/pypi/Scrapy
-   :alt: Supported Python Versions
-
-.. image:: https://img.shields.io/travis/scrapy/scrapy/master.svg
-   :target: https://travis-ci.org/scrapy/scrapy
-   :alt: Build Status
-
-.. image:: https://img.shields.io/badge/wheel-yes-brightgreen.svg
-   :target: https://pypi.python.org/pypi/Scrapy
-   :alt: Wheel Status
-
-.. image:: https://img.shields.io/codecov/c/github/scrapy/scrapy/master.svg
-   :target: https://codecov.io/github/scrapy/scrapy?branch=master
-   :alt: Coverage report
-
-.. image:: https://anaconda.org/conda-forge/scrapy/badges/version.svg
-   :target: https://anaconda.org/conda-forge/scrapy
-   :alt: Conda Version
-
 <!-- Overview -->
 # Overview
 
@@ -125,12 +95,10 @@ The proper way
 	name = "Euroncap"
 
 	# Extracting from local file
-	# start_urls = ["file:///home/ganesh/ \
-	              scrapy_learning/leaf_node_html.html"]
+	# start_urls = ["file:///home/ganesh/scrapy_learning/leaf_node_html.html"]
 
 	# Extracting from website
-	start_urls = ["https://www.euroncap.com/ \
-	              en/results/toyota/yaris-cross/43819"]
+	start_urls = ["https://www.euroncap.com/en/results/toyota/yaris-cross/43819"]
 
 	
 
@@ -141,19 +109,13 @@ The proper way
 		# having data and data-src as per 
 		# the outline of the page
 
-		# raw_image_urls_data = response.xpath('//*\
-		                    [@class="reward-images"] \ 
-		                    //img/@data-src').getall()
-		# raw_image_urls = response.xpath('//* \ 
-		                    [@class="reward-images"] \ 
-		                    //img/@src').getall()
+		# raw_image_urls_data = response.xpath('//*[@class="reward-images"]//img/@data-src').getall()
+		# raw_image_urls = response.xpath('//*[@class="reward-images"]//img/@src').getall()
 
 	
 		# Extracting all possible images from the links
-		raw_image_urls_data = response.xpath('//img \ 
-		                          /@data-src').getall()
-		raw_image_urls = response.xpath('//img/ \ 
-		                          @src').getall()
+		raw_image_urls_data = response.xpath('//img/@data-src').getall()
+		raw_image_urls = response.xpath('//img/@src').getall()
 
 
 		clean_image_urls = []
@@ -167,22 +129,17 @@ The proper way
 		#Concentrating only table
 		specification_table = response.css("div.tab_container")
 		
-		col1_data = [specs.css("span.tcol1::text").getall()\
-		               for specs in specification_table]
-		col2_data = [specs.css("span.tcol2::text").getall()\ 
-		               for specs in specification_table]
+		col1_data = [specs.css("span.tcol1::text").getall() for specs in specification_table]
+		col2_data = [specs.css("span.tcol2::text").getall() for specs in specification_table]
 
 		
 		yield {
 
-               'rating-title' : response.xpath('//div \ 
-                                  [@class="rating-title"]\ 
-                                  /p/text()').getall(),
+               'rating-title' : response.xpath('//div[@class="rating-title"]/p/text()').getall(),
 			   
                'col1' : col1_data,
                'col2' : col2_data,
-               'value'        : response.css('div.value\ 
-			                       ::text').getall(),
+               'value'        : response.css('div.value::text').getall(),
                'image_urls' : clean_image_urls
 
 		}
